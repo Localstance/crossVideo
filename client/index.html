@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Crossover videoportal</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+  <script src="js/vendors/angular-1.5.5.js"></script>
+  <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
+  <script src="js/services/md5.js"></script>
+</head>
+<body ng-app="VideoApp">
+  <div id="wrapper" ng-controller="MainController">
+    <header class="header">
+      <a href="#" class="header__logo">
+        <i class="fa fa-play-circle-o logo__icon" aria-hidden="true"></i>
+        <span class="header__appName">Crossover Video</span>
+      </a>
+      <nav class="header__nav nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="#" class="nav__link nav__link--active">Video</a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">Channels</a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link search-btn">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link" ng-hide="authStatus">Login</a>
+            <a href="#" class="nav__link" ng-show="authStatus" ng-click="logout()">Logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <section class="main__wrapper">
+        <h2 class="main__title" ng-show="authStatus">Crossover videos</h2>
+        <hr ng-show="authStatus"/>
+        <div class="main__login">
+          <form action="#" class="loginForm" ng-submit="login()">
+            <label for="username" class="loginForm__label">User: </label>
+            <input type="text" id="username" class="loginForm__input" ng-model="user.username" required pattern="[A-Za-z]{3,20}">
+            <label for="password" class="loginForm__label">Password: </label>
+            <input type="password" id="password" class="loginForm__input" ng-model="user.password" required>
+            <button type="submit" class="loginForm__submit">Login</button>
+          </form>
+        </div>
+        <div class="main__videos videos hidden">
+          <div data-id="{{ video._id}}" class="videos__item video" ng-repeat="video in videos" ng-mouseover="hoverHandler()">
+            <video class="videos__video" controls>
+              <source ng-src="{{ video.url }}" type="video/mp4">
+            </video>
+            <h2 class="video__title">{{ video.name }}</h2>
+            <ul class="video__votes">
+              <li class="video__vote video__vote--active first-star">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="video__vote video__vote--active second-star">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="video__vote video__vote--active third-star">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="video__vote fourth-star">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="video__vote fifth-star">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+            </ul>
+            <p class="video__desc">{{ video.description }}</p>
+          </div>
+          <!--<video-item data-id="{{ video._id}}" class="videos__item video" ng-repeat="video in videos" ng-mouseover="hoverHandler()"></video-item>-->
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__wrapper">
+        <a href="" class="footer__logo">
+          <i class="fa fa-play-circle-o logo__icon" aria-hidden="true"></i>
+          <span class="footer__appName">Crossover Video</span>
+        </a>
+        <div class="footer__info">
+          <ul class="footer__social social__list">
+            <li class="social__item">
+              <a href="#" class="social__link">
+
+              </a>
+            </li>
+          </ul>
+          <span class="footer__copyright">
+            &copy; Oleksandr Strelchenko, 2016
+          </span>
+        </div>
+      </div>
+    </footer>
+  </div>
+	<script src="js/vendors/jquery-2.1.4.js"></script>
+
+  <!-- Modules-->
+	<script src="js/app.js"></script>
+
+  <!-- Controllers -->
+  <script src="js/controllers/MainController.js"></script>
+
+  <!-- Services-->
+  <script src="js/services/auth.js"></script>
+
+  <!-- Components-->
+  <script src="js/components/video.js"></script>
+</body>
+</html>

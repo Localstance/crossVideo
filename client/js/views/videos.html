@@ -1,0 +1,23 @@
+
+  <video class="videos__video" controls>
+    <source ng-src="{{ video.url }}" type="video/mp4">
+  </video>
+  <h2 class="video__title">{{ video.name }}</h2>
+  <ul class="video__votes">
+    <li class="video__vote video__vote--active first-star">
+      <i class="fa fa-star" aria-hidden="true"></i>
+    </li>
+    <li class="video__vote video__vote--active second-star">
+      <i class="fa fa-star" aria-hidden="true"></i>
+    </li>
+    <li class="video__vote video__vote--active third-star">
+      <i class="fa fa-star" aria-hidden="true"></i>
+    </li>
+    <li class="video__vote fourth-star">
+      <i class="fa fa-star" aria-hidden="true"></i>
+    </li>
+    <li class="video__vote fifth-star">
+      <i class="fa fa-star" aria-hidden="true"></i>
+    </li>
+  </ul>
+  <p class="video__desc">{{ video.description }}</p>
